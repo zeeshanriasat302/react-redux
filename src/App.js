@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { incNumber, decNumber } from "./action";
+import { Card, CardContent, Button, Typography } from "@material-ui/core";
 
-function App() {
+const App = () => {
+  const myState = useSelector((state) => state.changeTheNumber);
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "60vh" }}>
+      <Card style={{ width: "70%", margin: "2rem 0", padding: "2rem", background: "#e0e0e0" }}>
+        <CardContent style={{ textAlign: "center" }}>
+          <Typography variant="h5" gutterBottom>
+            Redux Counter
+          </Typography>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+            {// here is the useFull code
+            }
+            <Button variant="contained" color="secondary" onClick={() => dispatch(decNumber(1))}>-</Button>
+            <Typography variant="h4" style={{ margin: "0 1rem" }}>{myState}</Typography>
+            <Button variant="contained" color="primary" onClick={() => dispatch(incNumber(1))}>+</Button>
+            
+
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
-}
+};
 
 export default App;
